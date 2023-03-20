@@ -19,6 +19,7 @@ def exp_config():
     model = "gmc"
     seed = 0
     cuda = True
+    # cuda = False
 
     # Experiment id (for checkpoints)
     exp_id = None

@@ -75,7 +75,7 @@ def train_model(_config, _run):
         scenario_config=scenario_cfg,
         model_config=model_cfg,
     )
-
+    
     # Init Data Module
     data_module = setup_data_module(
         scenario=exp_cfg["scenario"],
@@ -250,5 +250,6 @@ def main(_config, _run):
 
 
 if __name__ == "__main__":
+    torch.multiprocessing.set_start_method('spawn')
     ex.run_commandline()
 

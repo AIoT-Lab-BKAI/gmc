@@ -25,7 +25,6 @@ class MHDDataset(Dataset):
                     'MHD Dataset not found. Please generate dataset and place it in the data folder.')
 
         # Load data
-        import ipdb; ipdb.set_trace()
         self._label_data, self._image_data, self._trajectory_data, self._sound_data, self._traj_normalization, self._sound_normalization = torch.load(self.data_file)
 
 
@@ -38,7 +37,6 @@ class MHDDataset(Dataset):
         """
         audio = unstack_tensor(self._sound_data[index]).unsqueeze(0)
         audio_perm = audio.permute(0, 2, 1)
-        import ipdb; ipdb.set_trace()
         return self._image_data[index], audio_perm, self._trajectory_data[index], self._label_data[index]
 
 

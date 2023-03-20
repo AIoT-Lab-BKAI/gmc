@@ -11,7 +11,7 @@ from gmc_code.DelaunayComponentAnalysis.schemes import (
     HDBSCANParams,
     REData,
 )
-from gmc_code.DelaunayComponentAnalysis.DCA import DelaunayComponentAnalysis
+from gmc_code.DelaunayComponentAnalysis.DCA import DCA as DelaunayComponentAnalysis
 import gmc_code.DelaunayComponentAnalysis.visualization as DCA_visualization
 
 

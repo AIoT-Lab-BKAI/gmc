@@ -1,0 +1,578 @@
+AffectGMC(
+  (criterion): L1Loss()
+  (language_processor): AffectGRUEncoder(
+    (gru): GRU(300, 30)
+    (projector): Linear(in_features=1500, out_features=60, bias=True)
+  )
+  (audio_processor): AffectGRUEncoder(
+    (gru): GRU(5, 30)
+    (projector): Linear(in_features=1500, out_features=60, bias=True)
+  )
+  (vision_processor): AffectGRUEncoder(
+    (gru): GRU(20, 30)
+    (projector): Linear(in_features=1500, out_features=60, bias=True)
+  )
+  (joint_processor): AffectJointProcessor(
+    (proj_l): Conv1d(300, 30, kernel_size=(1,), stride=(1,), bias=False)
+    (trans_l_with_a): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+    )
+    (trans_l_with_v): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+    )
+    (trans_l_mem): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+    )
+    (proj_a): Conv1d(5, 30, kernel_size=(1,), stride=(1,), bias=False)
+    (trans_a_with_l): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+    )
+    (trans_a_with_v): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+    )
+    (trans_a_mem): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+    )
+    (proj_v): Conv1d(20, 30, kernel_size=(1,), stride=(1,), bias=False)
+    (trans_v_with_l): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+    )
+    (trans_v_with_a): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=30, out_features=30, bias=True)
+          )
+          (fc1): Linear(in_features=30, out_features=120, bias=True)
+          (fc2): Linear(in_features=120, out_features=30, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((30,), eps=1e-05, elementwise_affine=True)
+    )
+    (trans_v_mem): TransformerEncoder(
+      (embed_positions): SinusoidalPositionalEmbedding()
+      (layers): ModuleList(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (4): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=60, out_features=60, bias=True)
+          )
+          (fc1): Linear(in_features=60, out_features=240, bias=True)
+          (fc2): Linear(in_features=240, out_features=60, bias=True)
+          (layer_norms): ModuleList(
+            (0): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+            (1): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((60,), eps=1e-05, elementwise_affine=True)
+    )
+    (proj1): Linear(in_features=180, out_features=180, bias=True)
+    (proj2): Linear(in_features=180, out_features=180, bias=True)
+    (projector): Linear(in_features=180, out_features=60, bias=True)
+  )
+  (encoder): AffectEncoder(
+    (encode): Linear(in_features=60, out_features=60, bias=True)
+  )
+  (proj1): Linear(in_features=60, out_features=60, bias=True)
+  (proj2): Linear(in_features=60, out_features=60, bias=True)
+  (classifier): Linear(in_features=60, out_features=1, bias=True)
+)

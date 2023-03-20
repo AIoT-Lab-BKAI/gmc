@@ -1,0 +1,72 @@
+MhdGMC(
+  (image_processor): MHDImageProcessor(
+    (image_features): Sequential(
+      (0): Conv2d(1, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+      (1): Swish()
+      (2): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+      (3): Swish()
+    )
+    (projector): Linear(in_features=6272, out_features=64, bias=True)
+  )
+  (sound_processor): MHDSoundProcessor(
+    (sound_features): Sequential(
+      (0): Conv2d(1, 128, kernel_size=(1, 128), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Conv2d(128, 128, kernel_size=(4, 1), stride=(2, 1), padding=(1, 0), bias=False)
+      (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU()
+      (6): Conv2d(128, 256, kernel_size=(4, 1), stride=(2, 1), padding=(1, 0), bias=False)
+      (7): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (8): ReLU()
+    )
+    (projector): Linear(in_features=2048, out_features=64, bias=True)
+  )
+  (trajectory_processor): MHDTrajectoryProcessor(
+    (trajectory_features): Sequential(
+      (0): Linear(in_features=200, out_features=512, bias=True)
+      (1): Swish()
+      (2): Linear(in_features=512, out_features=512, bias=True)
+      (3): Swish()
+    )
+    (projector): Linear(in_features=512, out_features=64, bias=True)
+  )
+  (label_processor): MHDLabelProcessor(
+    (projector): Linear(in_features=10, out_features=64, bias=True)
+  )
+  (joint_processor): MHDJointProcessor(
+    (img_features): Sequential(
+      (0): Conv2d(1, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+      (1): Swish()
+      (2): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+      (3): Swish()
+    )
+    (sound_features): Sequential(
+      (0): Conv2d(1, 128, kernel_size=(1, 128), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Conv2d(128, 128, kernel_size=(4, 1), stride=(2, 1), padding=(1, 0), bias=False)
+      (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU()
+      (6): Conv2d(128, 256, kernel_size=(4, 1), stride=(2, 1), padding=(1, 0), bias=False)
+      (7): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (8): ReLU()
+    )
+    (trajectory_features): Sequential(
+      (0): Linear(in_features=200, out_features=512, bias=True)
+      (1): Swish()
+      (2): Linear(in_features=512, out_features=512, bias=True)
+      (3): Swish()
+    )
+    (projector): Linear(in_features=8842, out_features=64, bias=True)
+  )
+  (encoder): MHDCommonEncoder(
+    (feature_extractor): Sequential(
+      (0): Linear(in_features=64, out_features=512, bias=True)
+      (1): Swish()
+      (2): Linear(in_features=512, out_features=512, bias=True)
+      (3): Swish()
+      (4): Linear(in_features=512, out_features=64, bias=True)
+    )
+  )
+)
