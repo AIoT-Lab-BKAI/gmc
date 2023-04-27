@@ -64,7 +64,7 @@ def train_model(_config, _run):
     # Init model input parameters
     exp_cfg, scenario_cfg, model_cfg = load_hyperparameters()
     model_train_cfg = _config["experiment"]["model_train_config"]
-
+    # import pdb; pdb.set_trace()
     # Set the seeds
     seed_everything(exp_cfg["seed"], workers=True)
 

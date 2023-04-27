@@ -56,8 +56,9 @@ class GMC(LightningModule):
         joint_mod_loss_sum = 0
         for mod in range(len(batch_representations) - 1):
             # Negative pairs: everything that is not in the current joint-modality pair
+            # import pdb; pdb.set_trace()
             out_joint_mod = torch.cat(
-                [batch_representations[-1], batch_representations[mod]], dim=0
+                [batch_representations[-1], batch_representations[mod]], dim=0      # (B,64) + (B,64) -> (2*B,64) - (128,64)
             )
             # [2*B, 2*B]
             sim_matrix_joint_mod = torch.exp(
@@ -74,9 +75,9 @@ class GMC(LightningModule):
             ).view(2 * batch_size, -1)
 
             # Positive pairs: cosine loss joint-modality
-            pos_sim_joint_mod = torch.exp(
+            pos_sim_joint_mod = torch.exp(      # [B]
                 torch.sum(
-                    batch_representations[-1] * batch_representations[mod], dim=-1
+                    batch_representations[-1] * batch_representations[mod], dim=-1      # group by sample
                 )
                 / temperature
             )

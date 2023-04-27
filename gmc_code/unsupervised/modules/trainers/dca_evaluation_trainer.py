@@ -74,7 +74,7 @@ class DCAEvaluator(LightningModule):
         )
 
         graph_config = DelaunayGraphParams(
-            executable_filepath=self.machine_path,
+            # executable_filepath=self.machine_path,
             unfiltered_edges_dir=os.path.join(experiment_id, "logs"),
             filtered_edges_dir=os.path.join(experiment_id, "logs"),
         )
@@ -93,7 +93,8 @@ class DCAEvaluator(LightningModule):
             graph_config,
             hdbscan_config,
             geomCA_config,
-            version=exp_loggers.version,
+            exp_loggers
+            # version=exp_loggers.version,
         )
 
         # Evaluate DCA

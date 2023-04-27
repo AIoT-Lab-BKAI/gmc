@@ -99,6 +99,7 @@ class AffectJointProcessor(torch.nn.Module):
         proj_x_a = proj_x_a.permute(2, 0, 1)
         proj_x_v = proj_x_v.permute(2, 0, 1)
         proj_x_l = proj_x_l.permute(2, 0, 1)
+        # import pdb; pdb.set_trace()
 
         # (V,A) --> L
         h_l_with_as = self.trans_l_with_a(proj_x_l, proj_x_a, proj_x_a)  # Dimension (L, N, d_l)
@@ -145,7 +146,6 @@ class AffectGRUEncoder(torch.nn.Module):
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
         self.latent_dim = latent_dim
-
         self.gru = nn.GRU(input_size=input_dim, hidden_size=hidden_dim,
                           batch_first=batch_first)
         self.projector = nn.Linear(self.hidden_dim*timestep, latent_dim)
@@ -154,6 +154,7 @@ class AffectGRUEncoder(torch.nn.Module):
 
     def forward(self, x):
         batch = len(x)
+        # import pdb; pdb.set_trace()
         input = x.reshape(batch, self.ts, self.input_dim).transpose(0, 1)
         output = self.gru(input)[0].transpose(0, 1)
         return self.projector(output.flatten(start_dim=1))

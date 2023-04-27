@@ -39,8 +39,11 @@ def _approximate_Delaunay_edges(
         root, graph_params.unfiltered_edges_filepath
     )
     if not os.path.isfile(unfiltered_Delaunay_edges_filepath):
+        
         os_output = os.system(
-            "./dca/approximate_Delaunay_graph {0} --nrays {1} --out {2} --out_dist {3}".format(
+            # "./DelaunayComponentAnalysis/approximate_Delaunay_graph {0} --nrays {1} --out {2} --out_dist {3}".format(
+            "approximate_Delaunay_graph {0} --nrays {1} --out {2} --out_dist {3}".format(
+                
                 os.path.join(root, input_array_filepath),
                 graph_params.T,
                 unfiltered_Delaunay_edges_filepath,
@@ -49,7 +52,7 @@ def _approximate_Delaunay_edges(
         )
         if os_output != 0:
             raise ValueError(
-                "Executable file dca/approximate_Delaunay_graph not working. Forgotten to change ownership?"
+                "Executable file DelaunayComponentAnalysis/approximate_Delaunay_graph not working. Forgotten to change ownership?"
             )
 
 

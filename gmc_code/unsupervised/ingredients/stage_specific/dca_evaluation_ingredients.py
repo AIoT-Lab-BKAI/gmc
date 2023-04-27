@@ -12,7 +12,7 @@ dca_evaluation_ingredient = sacred.Ingredient("dca_evaluation")
 def mhd():
     n_dca_samples = 10000
     random_seed = 1212
-    batch_size = 64
+    batch_size = 50
     num_workers = 0
     minimum_cluster_size = 10
     unique_modality_idxs = [3]  # [Image, sound, trajectory, label]

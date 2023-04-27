@@ -43,6 +43,7 @@ class ClassificationDataModule(LightningDataModule):
                 alignment = 'a'
 
                 # Train
+                # import pdb; pdb.set_trace()
                 train_data_path = os.path.join(self.data_dir, self.dataset) + f'_train_{alignment}.dt'
                 if not os.path.exists(train_data_path):
                     print(f"  - Creating new train data")
@@ -51,6 +52,7 @@ class ClassificationDataModule(LightningDataModule):
                 else:
                     print(f"  - Found cached train data")
                     self.train_data = torch.load(train_data_path)
+                    # from IPython.core.debugger import set_trace; set_trace()
 
                 # Validation
                 valid_data_path = os.path.join(self.data_dir, self.dataset) + f'_valid_{alignment}.dt'
@@ -158,6 +160,7 @@ class DCADataModule(LightningDataModule):
                 alignment = 'a'
 
                 # Train
+                # import pdb; pdb.set_trace()
                 train_data_path = os.path.join(self.data_dir, self.dataset) + f'_train_{alignment}.dt'
                 if not os.path.exists(train_data_path):
                     print(f"  - Creating new train data")
@@ -225,3 +228,10 @@ class DCADataModule(LightningDataModule):
             drop_last=False,
         )
 
+if __name__ == "__main__":
+    data_dir = "./dataset/"
+    data_config = {'data_dir': './dataset/', 'batch_size': 24, 'num_workers': 8, 'epochs': 40, 'learning_rate': 0.001, 'snapshot': 50, 'checkpoint': None, 'temperature': 0.3}
+    train_data = ClassificationDataModule("mosei", data_dir, data_config)
+    X, Y, Meta = next(iter(train_data))
+    # for batch in 
+    import pdb; pdb.set_trace()

@@ -28,7 +28,7 @@ model_train_ingredient = sacred.Ingredient("model_train")
 def gmc_mhd_train():
     # Dataset parameters
     data_dir = "./dataset/"
-    batch_size = 64
+    batch_size = 50
     num_workers = 8
 
     # Training Hyperparameters

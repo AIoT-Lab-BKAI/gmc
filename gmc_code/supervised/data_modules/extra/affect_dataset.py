@@ -10,6 +10,8 @@ class AffectDataset(Dataset):
     def __init__(self, dataset_path, data='mosei_senti', split_type='train', if_align=True):
         super(AffectDataset, self).__init__()
         dataset_path = os.path.join(dataset_path, data + '_data.pkl' if if_align else data + '_data_noalign.pkl')
+        # import pdb; pdb.set_trace()
+        
         dataset = pickle.load(open(dataset_path, 'rb'))
 
         # These are torch tensors
@@ -44,8 +46,10 @@ class AffectDataset(Dataset):
         return len(self.labels)
 
     def __getitem__(self, index):
-        X = (index, self.text[index].cuda(), self.audio[index].cuda(), self.vision[index].cuda())
-        Y = self.labels[index].cuda()
+        # X = (index, self.text[index].cuda(), self.audio[index].cuda(), self.vision[index].cuda())
+        # Y = self.labels[index].cuda()
+        X = (index, self.text[index], self.audio[index], self.vision[index])
+        Y = self.labels[index]
         META = (0, 0, 0) if self.meta is None else (self.meta[index][0], self.meta[index][1], self.meta[index][2])
         if self.data == 'mosi':
             META = (self.meta[index][0].decode('UTF-8'), self.meta[index][1].decode('UTF-8'),
@@ -53,3 +57,4 @@ class AffectDataset(Dataset):
         if self.data == 'iemocap':
             Y = torch.argmax(Y, dim=-1)
         return X, Y, META        
+

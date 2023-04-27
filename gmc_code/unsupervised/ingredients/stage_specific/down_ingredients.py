@@ -10,7 +10,7 @@ down_train_ingredient = sacred.Ingredient("down_train")
 @down_train_ingredient.named_config
 def mhd():
     # Dataset parameters
-    batch_size = 64
+    batch_size = 50
     num_workers = 8
 
     # Training Hyperparameters
